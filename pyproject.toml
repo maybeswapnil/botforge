@@ -1,0 +1,21 @@
+[project]
+name = "botforge"
+version = "0.1.0"
+description = "Botforge RAG Portal"
+authors = ["Swapnil Sharma <swapnil.sharma1998@gmail.com>"]
+dependencies = [
+  "fastapi",
+  "uvicorn[standard]",
+  "sentence-transformers",
+  "numpy",
+  "upstash-vector",
+  "pydantic",
+  "python-dotenv",
+  "sqlalchemy",
+  "asyncpg",
+  "pydantic-settings"
+]
+
+
+[tool.uv]
+virtualenvs.in-project = true
