@@ -12,7 +12,7 @@ class QueryInput(BaseModel):
     include_vectors: bool = True
     include_metadata: bool = True
 
-@router.post("/query")
+@router.post("/")
 def query(input: QueryInput):
     result = index.query(
         data=input.data,

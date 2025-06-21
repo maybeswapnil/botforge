@@ -7,7 +7,7 @@ router = APIRouter()
 class TextInput(BaseModel):
     text: str
 
-@router.post("/embed")
+@router.post("/")
 def embed(input: TextInput):
     embedding = model.encode(input.text).tolist()
     return {"embedding": embedding}
