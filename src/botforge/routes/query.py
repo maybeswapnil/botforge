@@ -1,28 +1,15 @@
-import base64
-import numpy as np
-from fastapi import APIRouter
-from pydantic import BaseModel
-from botforge.core.vector_model import index
+# botforge/api/routes/query.py
+
+from fastapi import APIRouter, Query
+from botforge.services.query_engine import VectorSearchQA
 
 router = APIRouter()
 
-class QueryInput(BaseModel):
-    data: str
-    top_k: int = 1
-    include_vectors: bool = True
-    include_metadata: bool = True
-
 @router.post("/")
-def query(input: QueryInput):
-    result = index.query(
-        data=input.data,
-        top_k=input.top_k,
-        include_vectors=input.include_vectors,
-        include_metadata=input.include_metadata,
-    )
-    if "matches" in result:
-        for match in result["matches"]:
-            if "vector" in match and match["vector"] is not None:
-                decoded = base64.b64decode(match["vector"])
-                match["vector"] = np.frombuffer(decoded, dtype=np.float32).tolist()
-    return result
+def query_qa(question: str = Query(..., min_length=5), user_id: str = "", bot_id: str = ""):
+    engine = VectorSearchQA(user_id=user_id, bot_id=bot_id)
+    answer = engine.answer(question)
+    return {
+        "question": question,
+        "answer": answer
+    }

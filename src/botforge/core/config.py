@@ -4,6 +4,9 @@ class Settings(BaseSettings):
     upstash_url: str
     upstash_token: str
 
+    upload_location: str
+    openai_api_key: str
+
     postgres_user: str
     postgres_password: str
     postgres_db: str
