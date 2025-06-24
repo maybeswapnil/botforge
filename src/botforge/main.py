@@ -6,7 +6,7 @@ app = FastAPI()
 log.info("BotForge API initialized")
 
 app.include_router(embed.router, prefix="/embed", tags=["Embedding"])
-app.include_router(query.router, prefix="/query", tags=["Query"])
+app.include_router(query.router, prefix="/vector", tags=["Vector"])
 app.include_router(upload.router, prefix="/upload", tags=["Upload"])
 
 if __name__ == "__main__":
