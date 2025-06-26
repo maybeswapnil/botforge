@@ -10,6 +10,7 @@ router = APIRouter(prefix="", tags=["Vector Queries"])
 class QueryRequest(BaseModel):
     user_id: str
     bot_id: str
+    client_id: str
     query: str
     model: str = "gpt-3.5-turbo"  # Default OpenAI model
     top_k: int = 5
@@ -54,6 +55,7 @@ async def query_vector_data(
         
         result = await service.query_and_generate_response(
             user_id=request.user_id,
+            client_id=request.client_id,  # Assuming client_id is part of the request
             bot_id=request.bot_id,
             query=request.query,
             model=request.model,

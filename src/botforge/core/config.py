@@ -11,7 +11,6 @@ class Settings(BaseSettings):
     openai_max_tokens: int = 1000
     openai_temperature: float = 0.7
     
-    # Vector search settings
     default_top_k: int = 5
     max_top_k: int = 20
 
@@ -20,6 +19,9 @@ class Settings(BaseSettings):
     postgres_db: str
     postgres_host: str
     postgres_port: int
+
+    redis_uri: str = "redis://localhost:6379/0"
+    default_history_size: int = 3
 
     class Config:
         env_file = ".env"
