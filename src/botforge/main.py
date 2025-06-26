@@ -1,11 +1,10 @@
 from fastapi import FastAPI
-from botforge.routes import embed, query, upload
+from botforge.routes import query, upload
 from botforge.core.logger import log
 
 app = FastAPI()
 log.info("BotForge API initialized")
 
-app.include_router(embed.router, prefix="/embed", tags=["Embedding"])
 app.include_router(query.router, prefix="/vector", tags=["Vector"])
 app.include_router(upload.router, prefix="/upload", tags=["Upload"])
 
