@@ -5,6 +5,10 @@ from botforge.core.logger import log
 app = FastAPI()
 log.info("BotForge API initialized")
 
+@app.get("/health")
+def health():
+    return {"status": "ok"}
+
 app.include_router(query.router, prefix="/vector", tags=["Vector"])
 app.include_router(upload.router, prefix="/upload", tags=["Upload"])
 

@@ -1,0 +1,54 @@
+# Docker
+.dockerignore
+Dockerfile*
+docker-compose*.yml
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+.eggs/
+*.egg-info/
+
+# Virtual environments
+.env
+.venv
+env/
+venv/
+ENV/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Testing
+.tox/
+.nox/
+.coverage
+.pytest_cache/
+.cache
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+.tmp/
+tmp/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Database
+*.db
+*.sqlite
+
+# Redis
+dump.rdb

@@ -16,7 +16,9 @@ dependencies = [
   "pydantic-settings",
   "PyPDF2",
   "openai>=1.0.0",
-  "asyncio"
+  "asyncio",
+  "redis",
+  "typing-extensions"
 ]
 
 

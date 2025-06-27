@@ -1,0 +1,53 @@
+
+{
+  "name": "BotForge RAG DevContainer",
+  "dockerFile": "../Dockerfile.dev",
+  // "mounts": [...], // Removed: now copying everything into the image
+  "workspaceFolder": "/workspaces/botforge-rag",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.black-formatter",
+        "ms-python.isort",
+        "ms-python.pylint",
+        "ms-toolsai.jupyter",
+        "charliermarsh.ruff",
+        "tamasfe.even-better-toml",
+        "redhat.vscode-yaml",
+        "ms-vscode.vscode-json",
+        "GitHub.copilot",
+        "GitHub.copilot-chat",
+        "ms-python.pytest"
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/local/bin/python",
+        "python.linting.enabled": true,
+        "python.linting.pylintEnabled": false,
+        "python.linting.flake8Enabled": true,
+        "python.linting.flake8Args": ["--max-line-length=88", "--ignore=E203,W503"],
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+          "source.organizeImports": "explicit"
+        },
+        "files.exclude": {
+          "**/__pycache__": true,
+          "**/.pytest_cache": true,
+          "**/*.pyc": true
+        },
+        "python.testing.pytestEnabled": true,
+        "python.testing.unittestEnabled": false,
+        "python.testing.pytestArgs": ["tests"],
+        "terminal.integrated.defaultProfile.linux": "bash"
+      }
+    }
+  },
+  "forwardPorts": [8000, 5432, 6379],
+  "postCreateCommand": "pip install --upgrade pip && pip install uv && uv pip install --system -r pyproject.toml && pip install pytest pytest-asyncio pytest-cov black flake8 isort mypy httpx pytest-mock",
+  // "remoteUser": "vscode",  // Commented out: only set this if your Dockerfile creates the user
+  "remoteUser": "root",
+  "containerEnv": {
+    "PYTHONPATH": "/workspaces/botforge-rag/src",
+    "ENVIRONMENT": "development"
+  }
+}
